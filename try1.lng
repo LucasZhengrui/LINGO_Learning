@@ -1,0 +1,12 @@
+model:
+	sets:
+	quarters/1,2,3,4/:dem,rp,op,inv;
+	endsets
+min=@sum(quarters:400*rp+450*op+20*inv);
+@for(quarters(i):rp(i)<40);
+@for(quarters(i)|i#gt#1:inv(i)=inv(i-1)+rp(i)+op(i)-dem(i););
+inv(1)=10+rp(1)+op(1)-dem(1);
+data:
+	dem=40,60,75,25;
+enddata
+end
